@@ -91,26 +91,7 @@
                                 @endforeach
                             @endif
                             <div class="col-12">
-                                <nav class="mt-4">
-                                    <!-- pagination -->
-                                    <nav class="mb-md-50">
-                                        <ul class="pagination justify-content-center">
-                                            <li class="page-item active "> <a href="blog.html" class="page-link">
-                                                    1
-                                                </a>
-                                            </li>
-                                            <li class="page-item"> <a href="blog.html" class="page-link">
-                                                    2
-                                                </a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="blog.html" aria-label="Pagination Arrow">
-                                                    <i class="fas fa-angle-right"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </nav>
+                                {{ $posts->links() }}
                             </div>
                         </div>
                     </div>
@@ -120,17 +101,14 @@
                     <div class="widget widget-categories">
                         <h5 class="widget-title"><span>Category</span></h5>
                         <ul class="list-unstyled widget-list">
-                            <li><a href="#!">Technology <small class="ml-auto">(1)</small></a>
-                            </li>
-                            <li><a href="#!">Fashion <small class="ml-auto">(1)</small></a>
-                            </li>
-                            <li><a href="#!">Photography <small class="ml-auto">(2)</small></a>
-                            </li>
-                            <li><a href="#!">Videography <small class="ml-auto">(1)</small></a>
-                            </li>
+                            @foreach ($category as $cat)
+                                <li><a href="">{{ $cat->name }} <small class="ml-auto"></small></a>
+                                </li>
+                            @endforeach
+
                         </ul>
                     </div>
-                    <!-- tags -->
+                    {{-- <!-- tags -->
                     <div class="widget widget-tags">
                         <h4 class="widget-title"><span>Tags</span></h4>
                         <ul class="list-inline widget-list widget-list-inline taxonomies-list">
@@ -149,56 +127,28 @@
                             <li class="list-inline-item"><a href="#!">Video</a>
                             </li>
                         </ul>
-                    </div>
+                    </div> --}}
                     <!-- latest post -->
                     <div class="widget">
                         <h5 class="widget-title"><span>Latest Article</span></h5>
                         <!-- post-item -->
-                        <ul class="list-unstyled widget-list">
-                            <li class="d-flex widget-post align-items-center">
-                                <a class="text-black" href="/blog/elements/">
-                                    <div class="widget-post-image flex-shrink-0 me-3">
-                                        <img class="rounded" loading="lazy" decoding="async"
-                                            src="images/blog/post-4.jpg" alt="Post Thumbnail">
+                        @foreach ($latestPost as $latest)
+                            <ul class="list-unstyled widget-list">
+                                <li class="d-flex widget-post align-items-center">
+                                    <a class="text-black" href="/blog/elements/">
+                                        <div class="widget-post-image flex-shrink-0 me-3">
+                                            <img class="rounded" loading="lazy" decoding="async"
+                                                src="{{ Voyager::image($latest->image) }}" alt="Post Thumbnail">
+                                        </div>
+                                    </a>
+                                    <div class="flex-grow-1">
+                                        <h5 class="h6 mb-0"><a class="text-black"
+                                                href="blog-details.html">{{ $latest->title }}</a></h5>
+                                        <small>March 15, 2020</small>
                                     </div>
-                                </a>
-                                <div class="flex-grow-1">
-                                    <h5 class="h6 mb-0"><a class="text-black" href="blog-details.html">Elements That
-                                            You Can Use To Create A New Post On This Template.</a></h5>
-                                    <small>March 15, 2020</small>
-                                </div>
-                            </li>
-                        </ul>
-                        <ul class="list-unstyled widget-list">
-                            <li class="d-flex widget-post align-items-center">
-                                <a class="text-black" href="/blog/post-1/">
-                                    <div class="widget-post-image flex-shrink-0 me-3">
-                                        <img class="rounded" loading="lazy" decoding="async"
-                                            src="images/blog/post-1.jpg" alt="Post Thumbnail">
-                                    </div>
-                                </a>
-                                <div class="flex-grow-1">
-                                    <h5 class="h6 mb-0"><a class="text-black" href="blog-details.html">Cheerful
-                                            Loving Couple Bakers Drinking Coffee</a></h5>
-                                    <small>March 14, 2020</small>
-                                </div>
-                            </li>
-                        </ul>
-                        <ul class="list-unstyled widget-list">
-                            <li class="d-flex widget-post align-items-center">
-                                <a class="text-black" href="/blog/post-2/">
-                                    <div class="widget-post-image flex-shrink-0 me-3">
-                                        <img class="rounded" loading="lazy" decoding="async"
-                                            src="images/blog/post-2.jpg" alt="Post Thumbnail">
-                                    </div>
-                                </a>
-                                <div class="flex-grow-1">
-                                    <h5 class="h6 mb-0"><a class="text-black" href="blog-details.html">Cheerful
-                                            Loving Couple Bakers Drinking Coffee</a></h5>
-                                    <small>March 14, 2020</small>
-                                </div>
-                            </li>
-                        </ul>
+                                </li>
+                            </ul>
+                        @endforeach
                     </div>
                     <!-- Social -->
 

@@ -130,6 +130,7 @@
     <script src="{{ asset('assets/front/js/script.js') }}"></script>
 
     @livewireScripts
+    
 </body>
 
 </html>
